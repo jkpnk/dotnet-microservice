@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khanh\\Desktop\\learn\\PlatformService\\PlatformService.csproj": {}
+    "D:\\MBF\\14.Learn\\dotnet-microservice\\PlatformService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khanh\\Desktop\\learn\\PlatformService\\PlatformService.csproj": {
+    "D:\\MBF\\14.Learn\\dotnet-microservice\\PlatformService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khanh\\Desktop\\learn\\PlatformService\\PlatformService.csproj",
+        "projectUniqueName": "D:\\MBF\\14.Learn\\dotnet-microservice\\PlatformService.csproj",
         "projectName": "PlatformService",
-        "projectPath": "C:\\Users\\khanh\\Desktop\\learn\\PlatformService\\PlatformService.csproj",
-        "packagesPath": "C:\\Users\\khanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\khanh\\Desktop\\learn\\PlatformService\\obj\\",
+        "projectPath": "D:\\MBF\\14.Learn\\dotnet-microservice\\PlatformService.csproj",
+        "packagesPath": "C:\\Users\\khanh.phamngoc\\.nuget\\packages\\",
+        "outputPath": "D:\\MBF\\14.Learn\\dotnet-microservice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\khanh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\khanh.phamngoc\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
