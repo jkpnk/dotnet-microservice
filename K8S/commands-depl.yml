@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: commands-depl
+spec:
+  replicas: 1  # giữ 1 container run
+  selector:
+    matchLabels:
+      app: commandservice
+  template:
+    metadata:
+      labels:
+        app: commandservice
+    spec:
+      containers:
+        - name: commandservice
+          image: khanh1406/commandservice:latest
+          imagePullPolicy: Never  # pull images nếu cần, nếu dùng local thì không cần
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://+:80"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  command-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: commandservice
+  ports:
+  - name:  commandservice
+    protocol: TCP
+    port:  80
+    targetPort:  80
+  
