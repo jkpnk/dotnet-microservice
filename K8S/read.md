@@ -14,3 +14,11 @@
 5. Get namespace
 `kubectl get namespace`
 
+6. Get PVC
+`kubectl get pvc`
+
+7. Get Storageclass
+`kubectl get storageclass`
+
+8. Create secret generic mssql
+`kubectl create secret generic mssql --from-literal=SA_PASSWORD="pa55w0rd"`

@@ -6,17 +6,24 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
   labels:
-    app.kubernetes.io/name: myingress
+    app.kubernetes.io/name: 
 spec:
   rules:
-  - host: <Host>
+  - host: acme.com
     http:
       paths:
       - pathType: Prefix
-        path: "/"
+        path: "/api/Platforms"
         backend:
           service:
-            name: <Service>
+            name: platform-clusterip-srv
             port: 
-              number: <Port>
+              number: 80
+      - pathType: Prefix
+        path: "/api/c/Platforms"
+        backend:
+          service:
+            name: command-clusterip-srv
+            port: 
+              number: 80
 
