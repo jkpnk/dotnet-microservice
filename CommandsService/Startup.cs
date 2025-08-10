@@ -1,3 +1,6 @@
+using CommandsService.AsyncDataServices;
+using CommandsService.Data;
+using CommandsService.EventProcessing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -14,11 +17,15 @@ namespace CommandsService
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<AppDbContext>(opt =>
-            //     opt.UseInMemoryDatabase("InMem"));
+            services.AddDbContext<AppDbContext>(opt =>
+                opt.UseInMemoryDatabase("InMem"));
+            services.AddScoped<ICommandRepo, CommandRepo>();
 
             services.AddControllers();
 
+            services.AddHostedService<MessageBusSubcriber>();
+            
+            services.AddSingleton<IEventProcessor, EventProcessor>();
             // Add Swagger
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>

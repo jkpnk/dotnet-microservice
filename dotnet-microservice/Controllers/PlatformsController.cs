@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PlatformService.AsyncDataServices;
 using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Models;
@@ -13,11 +14,13 @@ namespace PlatformService.Controller
     {
         private readonly IPlatformRepo _repository;
         private readonly ICommandDataClient _commandDataClient;
+        private readonly IMessageBusClient _messageBusClient;
 
-        public PlatformsController(IPlatformRepo repository, ICommandDataClient commandDataClient)
+        public PlatformsController(IPlatformRepo repository, ICommandDataClient commandDataClient, IMessageBusClient messageBusClient)
         {
             _repository = repository;
             _commandDataClient = commandDataClient;
+            _messageBusClient = messageBusClient;
         }
 
         [HttpGet]
@@ -76,9 +79,26 @@ namespace PlatformService.Controller
                 Cost = platformModel.Cost
             };
 
+            // send sync message
             try
             {
                 await _commandDataClient.SendPlatFormToCommand(platformReadDto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"--> Could not send synchronouslyu: {ex.Message}");
+            }
+
+            //send async message
+            try
+            {
+                var platformPublicDto = new PlatformPublishedDto
+                {
+                    Id = platformReadDto.Id,
+                    Name = platformReadDto.Name,
+                    Event = "Platform_Published"
+                };
+                _messageBusClient.PublishNewPlatformAsync(platformPublicDto);
             }
             catch (Exception ex)
             {
